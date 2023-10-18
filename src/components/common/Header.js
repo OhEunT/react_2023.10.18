@@ -8,7 +8,7 @@ export default function Header({ type }) {
     const active = { color: "#000" };
     let logoURL = "";
 
-    type === "main" ? (logoURL = "/img/logo_w.png") : (logoURL = "/img/logo_b.png");
+    type === "main" ? (logoURL = "img/logo_w.png") : (logoURL = "img/logo_b.png");
 
 
     return (
