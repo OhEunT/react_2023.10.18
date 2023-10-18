@@ -10,6 +10,15 @@ export const setMembers = (member) => {
     }
 }
 
+export const setYoutube = (data) => {
+    return {
+        type: "SET_YOUTUBE",
+        payload: data,
+    }
+}
+
+
+
 /*
 리덕스를 사용하기 위해서 필요한 내용
 

@@ -2,23 +2,30 @@ import React from 'react';
 import Layout from '../common/Layout';
 import Pop from '../common/Pop';
 import axios from 'axios';
+
+import { useDispatch, useSelector } from 'react-redux';
+import { setYoutube } from '../../redux/action';
+
 import { useEffect, useState, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faYoutube } from '@fortawesome/free-brands-svg-icons';
 
 function Youtube() {
+  const dispatch = useDispatch();
   const line = useRef(null);
   const pop = useRef(null);
-  const [Vids, setVids] = useState([]);
+  // const [Vids, setVids] = useState([]);
   // const [Open, setOpen] = useState(false);
   const [Index, setIndex] = useState(0);
+  const Vids = useSelector((store) => store.youtubeReducer.youtube);
 
   const getYoutube = async () => {
     let key = "AIzaSyBxnZ1kg_BJjZCcQrxHM4iiBdGWtEnUNgE";
     let playlistId = "PLOUTaH0Ih5K8zV_dti0-4B_G39jP84oq2";
     const url = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&key=${key}&playlistId=${playlistId}`;
     axios.get(url).then((json) => {
-      setVids(json.data.items);
+      // setVids(json.data.items);
+      dispatch(setYoutube(json.data.items))
     })
   }
 

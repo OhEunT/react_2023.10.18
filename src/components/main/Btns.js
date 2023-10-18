@@ -14,6 +14,7 @@ function Btns() {
     }
     //버튼, 박스활성화 함수
     const activation = () => {
+        if (!btnRef.current) return;
         const btns = btnRef.current.children;
         const sections = btnRef.current.parentElement.querySelectorAll(".myScroll");
         const scroll = window.scrollY;

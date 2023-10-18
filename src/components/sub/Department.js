@@ -1,20 +1,24 @@
 import React from 'react'
 import Layout from '../common/Layout'
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+
+import { useSelector } from 'react-redux';
+
+
 function Department() {
   const path = process.env.PUBLIC_URL;
-  const [Members, setMembers] = useState([]);
-  useEffect(() => {
-    axios
-      .get(process.env.PUBLIC_URL + "/DB/members.json")
-      .then((json) => { setMembers(json.data.members); })
-  }, []);
+
+  const Members = useSelector((store) => store.memberReducer.members);
+  /*
+  index.js에서 Provider로 store를 App.js에 연결하였으므로 어플리케이션 전역에서 store에 접근이 가능합니다
+  따라서 기존의 DB가 아닌 store있는 정보를 가지고 오는 과정입니다
+  useSelector로 store에 접근
+   store에 있는 memberReducer함수에 접근합니다
+   함수 안에있는 키인 members에 접근하면
+   reducer로 액션을 가져온 initMember가 존재하므로
+   기존과 같은 DB를 불러올수 있는것입니다
+  */
 
 
-  useEffect(() => {
-    console.log(Members);
-  }, [Members])
   return (
     <Layout name={"Department"}>
       {Members.map((el, index) => (
